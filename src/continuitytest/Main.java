@@ -21,7 +21,7 @@ import javax.print.PrintService;
  */
 public class Main extends javax.swing.JFrame {
 
-     public PrintService[] services;
+    public PrintService[] services;
     public ConcurrentLinkedQueue<ValetParking> ValetLogObject = new ConcurrentLinkedQueue<ValetParking>();
     HashMap<String, Object> XXS = new HashMap();
     HashMap<String, Object> XS = new HashMap();
@@ -31,6 +31,7 @@ public class Main extends javax.swing.JFrame {
     HashMap<String, Object> XXL = new HashMap();
     HashMap<String, Object> S = new HashMap();
     HashMap<String, Object> ParkingMap = new HashMap();
+    HashMap<String, ValetParking> ParkingHistoryMap = new HashMap();
     int MaxSize = 2;
 
     /**
@@ -216,6 +217,11 @@ public class Main extends javax.swing.JFrame {
                 XS.put(plate, hashName);
 
                 ConsoleMsg(hashName + " BLOCK HAS CAR  " + plate);
+//                ValetParking vP = new ValetParking();
+//                vP.setPlate(plate);
+//                vP.setParking_id(0);
+//                vP.setLogintime(getCurrentTimeStamp());
+//                ParkingHistoryMap.put(plate, vP);
 
             } else {
                 System.out.println("Is Parked in OTher Block");
@@ -548,7 +554,6 @@ public class Main extends javax.swing.JFrame {
 
     private void menuSearchExistingVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchExistingVehicleActionPerformed
 
-        
         CarSearch cS = new CarSearch(this);
         dp.add(cS);
         cS.show();
@@ -557,11 +562,10 @@ public class Main extends javax.swing.JFrame {
 
     private void menuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingsActionPerformed
 
-        
         /*
         Displays Setting Box to set Max container Size
         
-        */
+         */
         Settings sM = new Settings(this);
         dp.add(sM);
         sM.show();
