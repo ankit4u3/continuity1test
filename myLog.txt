@@ -57,3 +57,16 @@ S BLOCK HAS CAR  5555  	2015-12-31 11:43:13
 Car Parked : Location == >S  	2015-12-31 11:43:13
 Car Parked : Location == >S  	2015-12-31 11:43:25
 Program Started 
+Program Started 
+XS BLOCK HAS CAR  1111  	2015-12-31 12:04:23
+Car Parked : Location == >XS  	2015-12-31 12:04:23
+S BLOCK HAS CAR  2222  	2015-12-31 12:04:39
+Car Parked : Location == >S  	2015-12-31 12:04:39
+S BLOCK HAS CAR  3333  	2015-12-31 12:04:42
+Car Parked : Location == >S  	2015-12-31 12:04:42
+Car Parked : Location == >S  	2015-12-31 12:04:53
+Car Parked : Location == >S  	2015-12-31 12:04:55
+ BLOCK HAS REMOVED CAR  3333  	2015-12-31 12:04:55
+Program Started 
+XS BLOCK HAS CAR  1111  	2015-12-31 12:06:01
+Car Parked : Location == >XS  	2015-12-31 12:06:01
