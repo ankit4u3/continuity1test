@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import javax.print.PrintService;
 
 /**
  *
@@ -20,6 +21,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class Main extends javax.swing.JFrame {
 
+     public PrintService[] services;
     public ConcurrentLinkedQueue<ValetParking> ValetLogObject = new ConcurrentLinkedQueue<ValetParking>();
     HashMap<String, Object> XXS = new HashMap();
     HashMap<String, Object> XS = new HashMap();
