@@ -44,11 +44,11 @@ public class EntryModule extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelVehicleNumber = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        labelVehicleType = new javax.swing.JLabel();
         type_select = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        buttonParkbtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         console = new javax.swing.JTextArea();
@@ -57,9 +57,9 @@ public class EntryModule extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jLabel1.setText("Enter Vehicle Number");
+        labelVehicleNumber.setText("Enter Vehicle Number");
 
-        jLabel2.setText("Select Vehicle Type");
+        labelVehicleType.setText("Select Vehicle Type");
 
         type_select.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         type_select.addActionListener(new java.awt.event.ActionListener() {
@@ -68,10 +68,10 @@ public class EntryModule extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Park ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonParkbtn.setText("Park ");
+        buttonParkbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonParkbtnActionPerformed(evt);
             }
         });
 
@@ -103,15 +103,15 @@ public class EntryModule extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(labelVehicleNumber)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField1))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(labelVehicleType)
                                 .addGap(18, 18, 18)
                                 .addComponent(type_select, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))
+                                .addComponent(buttonParkbtn)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -121,17 +121,17 @@ public class EntryModule extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(labelVehicleNumber)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(labelVehicleType)
                     .addComponent(type_select, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(buttonParkbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -142,7 +142,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_type_selectActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonParkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonParkbtnActionPerformed
 
         Object item = type_select.getSelectedItem();
         String value = ((ComboItem) item).getValue();
@@ -169,7 +169,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
             
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonParkbtnActionPerformed
 
     public void ConsoleMsg(String msg) {
 
@@ -179,13 +179,13 @@ public class EntryModule extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonParkbtn;
     private javax.swing.JTextArea console;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelVehicleNumber;
+    private javax.swing.JLabel labelVehicleType;
     private javax.swing.JComboBox type_select;
     // End of variables declaration//GEN-END:variables
 }

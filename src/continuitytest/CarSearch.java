@@ -32,16 +32,16 @@ public class CarSearch extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        labelSearchHint = new javax.swing.JLabel();
+        textPlateNumber = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         response = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonSearch = new javax.swing.JButton();
+        buttonCheckOut = new javax.swing.JButton();
 
-        jLabel1.setText("Enter 4 Digit Car Number ");
+        labelSearchHint.setText("Enter 4 Digit Car Number ");
 
-        jTextField1.setText("0000");
+        textPlateNumber.setText("0000");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -54,7 +54,7 @@ public class CarSearch extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(185, 185, 185)
                 .addComponent(response)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,17 +64,17 @@ public class CarSearch extends javax.swing.JInternalFrame {
                 .addContainerGap(125, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Search ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonSearch.setText("Search ");
+        buttonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonSearchActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Check Out");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonCheckOut.setText("Check Out");
+        buttonCheckOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonCheckOutActionPerformed(evt);
             }
         });
 
@@ -85,30 +85,30 @@ public class CarSearch extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(144, 144, 144)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textPlateNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(buttonSearch)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(buttonCheckOut))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
-                        .addComponent(jLabel1)))
+                        .addComponent(labelSearchHint))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(jLabel1)
+                .addComponent(labelSearchHint)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(textPlateNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonSearch)
+                    .addComponent(buttonCheckOut))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -117,11 +117,11 @@ public class CarSearch extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
 
-        int status = mRef.queryNumber(String.valueOf(jTextField1.getText().toString().trim()));
+        int status = mRef.queryNumber(String.valueOf(textPlateNumber.getText().toString().trim()));
         if (status == 0) {
-            String resp = mRef.getCarBlock(String.valueOf(jTextField1.getText().toString().trim()));
+            String resp = mRef.getCarBlock(String.valueOf(textPlateNumber.getText().toString().trim()));
 
             response.setText(resp);
         } else {
@@ -130,15 +130,15 @@ public class CarSearch extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Car Details not Found");
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_buttonSearchActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCheckOutActionPerformed
 
-        int status = mRef.queryNumber(String.valueOf(jTextField1.getText().toString().trim()));
+        int status = mRef.queryNumber(String.valueOf(textPlateNumber.getText().toString().trim()));
         if (status == 0) {
-            String resp = mRef.getCarBlock(String.valueOf(jTextField1.getText().toString().trim()));
+            String resp = mRef.getCarBlock(String.valueOf(textPlateNumber.getText().toString().trim()));
 
-         resp= mRef.freeCarBlock(String.valueOf(jTextField1.getText().toString().trim()));
+         resp= mRef.freeCarBlock(String.valueOf(textPlateNumber.getText().toString().trim()));
          response.setText("NOT FOUND");
         } else {
             response.setText("NOT FOUND");
@@ -147,15 +147,15 @@ public class CarSearch extends javax.swing.JInternalFrame {
         }
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_buttonCheckOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton buttonCheckOut;
+    private javax.swing.JButton buttonSearch;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelSearchHint;
     private javax.swing.JLabel response;
+    private javax.swing.JTextField textPlateNumber;
     // End of variables declaration//GEN-END:variables
 }
