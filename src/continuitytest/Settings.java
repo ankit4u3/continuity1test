@@ -11,11 +11,15 @@ package continuitytest;
  */
 public class Settings extends javax.swing.JInternalFrame {
 
+    Main mRef;
     /**
      * Creates new form Settings
      */
-    public Settings() {
+    public Settings(Main m) {
         initComponents();
+        mRef=m;
+        textMaxCapacity.setText(String.valueOf(mRef.getMaxSize()));
+        
     }
 
     /**
@@ -39,6 +43,11 @@ public class Settings extends javax.swing.JInternalFrame {
         labelMaxBlockCapacity.setText("Set Max Capacity of Block ");
 
         btnUpdateMaxBlockSize.setText("Update");
+        btnUpdateMaxBlockSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMaxBlockSizeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,6 +81,15 @@ public class Settings extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUpdateMaxBlockSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMaxBlockSizeActionPerformed
+
+ 
+int newSize=Integer.valueOf(mRef.getMaxSize());
+mRef.setMaxSize(newSize);
+mRef.ConsoleMsg("Container Size Updated");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateMaxBlockSizeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

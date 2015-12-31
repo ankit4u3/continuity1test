@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @author Chaurasia
  */
 public class Main extends javax.swing.JFrame {
-    
+
     public ConcurrentLinkedQueue<ValetParking> ValetLogObject = new ConcurrentLinkedQueue<ValetParking>();
     HashMap<String, Object> XXS = new HashMap();
     HashMap<String, Object> XS = new HashMap();
@@ -29,6 +29,7 @@ public class Main extends javax.swing.JFrame {
     HashMap<String, Object> XXL = new HashMap();
     HashMap<String, Object> S = new HashMap();
     HashMap<String, Object> ParkingMap = new HashMap();
+    int MaxSize = 2;
 
     /**
      * Creates new form Main
@@ -38,10 +39,8 @@ public class Main extends javax.swing.JFrame {
         appendLog("Program Started ");
     }
 
-    
-    public void backUpDaemon()
-    {
-        
+    public void backUpDaemon() {
+
         Thread daemonProcedureThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -49,16 +48,14 @@ public class Main extends javax.swing.JFrame {
 
                     while (true) {
                         if (ValetLogObject.isEmpty()) {
-                          
+
                             Thread.sleep(5000);
-                           
+
                         } else {
                             ValetParking str;
                             System.out.println("Reading Data  ");
 
                             while ((str = ValetLogObject.poll()) != null) {
-                              
- 
 
                             }
                         }
@@ -67,7 +64,7 @@ public class Main extends javax.swing.JFrame {
                 } catch (Exception e) {
 
                 } finally {
-                  
+
                     System.out.println("Daemon Thread exiting"); //never called
                 }
             }
@@ -77,8 +74,8 @@ public class Main extends javax.swing.JFrame {
         daemonProcedureThread.start();
 
 // TODO add your handling code here:
-    
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,9 +91,10 @@ public class Main extends javax.swing.JFrame {
         console = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
+        menuNewVehiclePark = new javax.swing.JMenuItem();
+        menuSearchExistingVehicle = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
+        menuSettings = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,27 +124,35 @@ public class Main extends javax.swing.JFrame {
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Park Vehicle");
-        openMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        menuNewVehiclePark.setMnemonic('o');
+        menuNewVehiclePark.setText("Park Vehicle");
+        menuNewVehiclePark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openMenuItemActionPerformed(evt);
+                menuNewVehicleParkActionPerformed(evt);
             }
         });
-        fileMenu.add(openMenuItem);
+        fileMenu.add(menuNewVehiclePark);
 
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Search");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        menuSearchExistingVehicle.setMnemonic('s');
+        menuSearchExistingVehicle.setText("Search");
+        menuSearchExistingVehicle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
+                menuSearchExistingVehicleActionPerformed(evt);
             }
         });
-        fileMenu.add(saveMenuItem);
+        fileMenu.add(menuSearchExistingVehicle);
 
         saveAsMenuItem.setMnemonic('a');
         saveAsMenuItem.setText("Out Vehicle");
         fileMenu.add(saveAsMenuItem);
+
+        menuSettings.setText("Settings");
+        menuSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSettingsActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuSettings);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -180,11 +186,11 @@ public class Main extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
-    
+
     public int queryNumber(String plateNumber) {
         boolean isinLaps = ParkingMap.containsKey(plateNumber);
         if (isinLaps == false) {
-            
+
             return -1;
             // Thread.sleep(5000);
             //   isProcessed.put(c.getChestno().trim(), c.getChestno().trim());
@@ -194,7 +200,7 @@ public class Main extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     public void trySaveinBlockXS(HashMap XS, String plate, String hashName) {
         int curSize = queryHashMap(XS);
         if (curSize != -1) {
@@ -205,23 +211,23 @@ public class Main extends javax.swing.JFrame {
             //query if is not parked
             boolean isParked = ParkingMap.containsKey(plate);
             if (isParked == false) {
-                
+
                 ParkingMap.put(plate, hashName);
                 XS.put(plate, hashName);
-                
+
                 ConsoleMsg(hashName + " BLOCK HAS CAR  " + plate);
-                
+
             } else {
                 System.out.println("Is Parked in OTher Block");
             }
-            
+
         } else {
             //Space is Full Search in Next Block 
             System.out.println(hashName + "XS BLOCK IS FULL");
             ConsoleMsg(hashName + " BLOCK CANNOT PARK  " + plate);
         }
     }
-    
+
     public void tryRemoveinBlockXS(HashMap XS, String plate) {
         int curSize = queryHashMap(XS);
         if (curSize != -1) {
@@ -236,18 +242,18 @@ public class Main extends javax.swing.JFrame {
                 XS.remove(o);
                 ParkingMap.remove(o);
                 ConsoleMsg("" + " BLOCK HAS REMOVED CAR  " + plate);
-                
+
             } else {
-                
+
             }
-            
+
         } else {
-            
+
         }
     }
-    
+
     public int queryAvailableSpace(int type, String plate) {
-        
+
         switch (type) {
             case 1:
 
@@ -261,14 +267,14 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
                 }
-                
+
                 break;
-            
+
             case 2:
                 //XS type
                 // XS -> Can Put XS|S|M|L|XL
@@ -281,13 +287,13 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
                 }
                 break;
-            
+
             case 3:
 
                 //M type
@@ -299,12 +305,12 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
                 }
-                
+
                 break;
             case 4:
 
@@ -316,13 +322,13 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
                 }
                 break;
-            
+
             case 5:
 //XL type
                 // XL -> Can Put XS|S|M|L|XL
@@ -332,7 +338,7 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
@@ -346,7 +352,7 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
@@ -364,24 +370,24 @@ public class Main extends javax.swing.JFrame {
                 if (queryNumber(plate) == -1) {
                     ConsoleMsg("Sorry the Parking is Full");
                 } else {
-                    
+
                     Object o = (Object) plate;
                     Object value = ParkingMap.get(o);
                     ConsoleMsg("Car Parked : Location == >" + String.valueOf(value));
                 }
                 break;
-            
+
             default:
                 break;
         }
-        
+
         return 0;
     }
-    
+
     public String getCarBlock(String plate) {
         if (queryNumber(plate) == -1) {
             return "DETAILS UNAVAILABLE ";
-            
+
         } else {
             Object o = (Object) plate;
             Object value = ParkingMap.get(o);
@@ -389,14 +395,14 @@ public class Main extends javax.swing.JFrame {
             return "Car Parked : Location == >" + String.valueOf(value);
         }
     }
-    
+
     /*
     On Car Checkout the Parking space is set free the data across all nodes are checked 
-    */
+     */
     public String freeCarBlock(String plate) {
         if (queryNumber(plate) == -1) {
             return "DETAILS UNAVAILABLE ";
-            
+
         } else {
             Object o = (Object) plate;
             tryRemoveinBlockXS(L, plate);
@@ -405,48 +411,119 @@ public class Main extends javax.swing.JFrame {
             tryRemoveinBlockXS(M, plate);
             tryRemoveinBlockXS(L, plate);
             tryRemoveinBlockXS(XL, plate);
-            
+
             return "Car Parked : Location is Now Free  == >" + String.valueOf(plate);
         }
     }
-    
+
     public int queryHashMap(HashMap hM) {
-        
+
         //Every Block has a max capacity 
         //here all block max capacity is set to 2 
-        if (hM.size() >= 2) {
+        if (hM.size() >= MaxSize) {
             return -1;
         } else {
-            
+
             return hM.size();
         }
-        
+
     }
-    
+
+    public HashMap<String, Object> getXXS() {
+        return XXS;
+    }
+
+    public void setXXS(HashMap<String, Object> XXS) {
+        this.XXS = XXS;
+    }
+
+    public HashMap<String, Object> getXS() {
+        return XS;
+    }
+
+    public void setXS(HashMap<String, Object> XS) {
+        this.XS = XS;
+    }
+
+    public HashMap<String, Object> getM() {
+        return M;
+    }
+
+    public void setM(HashMap<String, Object> M) {
+        this.M = M;
+    }
+
+    public HashMap<String, Object> getL() {
+        return L;
+    }
+
+    public void setL(HashMap<String, Object> L) {
+        this.L = L;
+    }
+
+    public HashMap<String, Object> getXL() {
+        return XL;
+    }
+
+    public void setXL(HashMap<String, Object> XL) {
+        this.XL = XL;
+    }
+
+    public HashMap<String, Object> getXXL() {
+        return XXL;
+    }
+
+    public void setXXL(HashMap<String, Object> XXL) {
+        this.XXL = XXL;
+    }
+
+    public HashMap<String, Object> getS() {
+        return S;
+    }
+
+    public void setS(HashMap<String, Object> S) {
+        this.S = S;
+    }
+
+    public HashMap<String, Object> getParkingMap() {
+        return ParkingMap;
+    }
+
+    public void setParkingMap(HashMap<String, Object> ParkingMap) {
+        this.ParkingMap = ParkingMap;
+    }
+
+    public int getMaxSize() {
+        return MaxSize;
+    }
+
+    public void setMaxSize(int MaxSize) {
+        this.MaxSize = MaxSize;
+    }
+
     /*
     Console Msg is Program alerts and Information for the users 
-    */
+     */
     public void ConsoleMsg(String msg) {
-        
+
         console.append("\n" + msg);
         console.setCaretPosition(console.getDocument().getLength());
         appendLog(msg + "  " + "\t" + getCurrentTimeStamp());
     }
-    
-    
+
     /*
     Get current date and time human readable
-    */
+     */
     public static String getCurrentTimeStamp() {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
         Date now = new Date();
         String strDate = sdfDate.format(now);
         return strDate;
     }
-    
+
     /*
     Logging all Input and output to logfile 
-    */
+     */
     public void appendLog(String msg) {
         try {
             PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("myLog.txt", true)));
@@ -459,23 +536,38 @@ public class Main extends javax.swing.JFrame {
 
     /*
     
-    */
-    
-    private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
-        
+     */
+
+    private void menuNewVehicleParkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNewVehicleParkActionPerformed
+
         EntryModule eM = new EntryModule(this);
         dp.add(eM);
         eM.show();
         // TODO add your handling code here:
-    }//GEN-LAST:event_openMenuItemActionPerformed
+    }//GEN-LAST:event_menuNewVehicleParkActionPerformed
 
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
+    private void menuSearchExistingVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSearchExistingVehicleActionPerformed
+
         
         CarSearch cS = new CarSearch(this);
         dp.add(cS);
         cS.show();
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveMenuItemActionPerformed
+    }//GEN-LAST:event_menuSearchExistingVehicleActionPerformed
+
+    private void menuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingsActionPerformed
+
+        
+        /*
+        Displays Setting Box to set Max container Size
+        
+        */
+        Settings sM = new Settings(this);
+        dp.add(sM);
+        sM.show();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuSettingsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -519,9 +611,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JMenuItem menuNewVehiclePark;
+    private javax.swing.JMenuItem menuSearchExistingVehicle;
+    private javax.swing.JMenuItem menuSettings;
     private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 
