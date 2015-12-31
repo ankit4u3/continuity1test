@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import javax.print.PrintService;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,6 +99,7 @@ public class Main extends javax.swing.JFrame {
         menuSearchExistingVehicle = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
         menuSettings = new javax.swing.JMenuItem();
+        menuReport = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -154,6 +156,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         fileMenu.add(menuSettings);
+
+        menuReport.setText("Report Generate");
+        menuReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuReportActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuReport);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -573,6 +583,22 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_menuSettingsActionPerformed
 
+    private void menuReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReportActionPerformed
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                PrintLogReport pLR = new PrintLogReport(Main.this);
+                pLR.generateReport();
+                JOptionPane.showMessageDialog(null, "Report Log Generated at Root");
+
+            }
+        }).start();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuReportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -616,6 +642,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuNewVehiclePark;
+    private javax.swing.JMenuItem menuReport;
     private javax.swing.JMenuItem menuSearchExistingVehicle;
     private javax.swing.JMenuItem menuSettings;
     private javax.swing.JMenuItem saveAsMenuItem;

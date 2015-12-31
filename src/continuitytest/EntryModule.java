@@ -112,7 +112,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
                                 .addComponent(type_select, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(buttonParkbtn)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 85, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -128,9 +128,9 @@ public class EntryModule extends javax.swing.JInternalFrame {
                     .addComponent(labelVehicleType)
                     .addComponent(type_select, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonParkbtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -144,37 +144,33 @@ public class EntryModule extends javax.swing.JInternalFrame {
 
     private void buttonParkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonParkbtnActionPerformed
 
-        if(String.valueOf(textVehiclePlate.getText().toString().trim()).length()>=4)
-        { 
-        
-        Object item = type_select.getSelectedItem();
-        String value = ((ComboItem) item).getValue();
-        //JOptionPane.showMessageDialog(null, value);
+        if (String.valueOf(textVehiclePlate.getText().toString().trim()).length() >= 4) {
 
-        int status = mRef.queryNumber(String.valueOf(textVehiclePlate.getText().toString().trim()));
-        if (status == 0) {
-            JOptionPane.showMessageDialog(null, "Car Already Parked");
-            textVehiclePlate.setText("");
-            textVehiclePlate.requestFocus();
-        } else {
-            //   JOptionPane.showMessageDialog(null, "Continue to Park");
-            mRef.queryAvailableSpace(Integer.valueOf(value), String.valueOf(textVehiclePlate.getText().toString().trim()));
-            textVehiclePlate.setText("");
-            textVehiclePlate.requestFocus();
+            Object item = type_select.getSelectedItem();
+            String value = ((ComboItem) item).getValue();
+            //JOptionPane.showMessageDialog(null, value);
 
-            /*
+            int status = mRef.queryNumber(String.valueOf(textVehiclePlate.getText().toString().trim()));
+            if (status == 0) {
+                JOptionPane.showMessageDialog(null, "Car Already Parked");
+                textVehiclePlate.setText("");
+                textVehiclePlate.requestFocus();
+            } else {
+                //   JOptionPane.showMessageDialog(null, "Continue to Park");
+                mRef.queryAvailableSpace(Integer.valueOf(value), String.valueOf(textVehiclePlate.getText().toString().trim()));
+                textVehiclePlate.setText("");
+                textVehiclePlate.requestFocus();
+
+                /*
             API Details 
             queryNumber : Checks if the plate number of the car for duplicate entry
             queryAvailableSpace : Car Model id AND plate Number to query and Get Response 
             getCarBlock : get the location of the block where the car is blocked
             freeCarBlock : remove the entry and mark block free again
-            */
-            
-        }
-        }
-        else
-        {
-              JOptionPane.showMessageDialog(null, "Invalid Car Plate Number [REQUIRED 4 ]");
+                 */
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid Car Plate Number [REQUIRED 4 ]");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonParkbtnActionPerformed
