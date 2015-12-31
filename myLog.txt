@@ -40,3 +40,19 @@ Car Parked : Location == >S  	2015-12-31 11:38:41
 Container Size Updated  	2015-12-31 11:38:47
 XS BLOCK HAS CAR  5555  	2015-12-31 11:38:55
 Car Parked : Location == >XS  	2015-12-31 11:38:55
+Program Started 
+Program Started 
+Program Started 
+XS BLOCK HAS CAR  1111  	2015-12-31 11:42:26
+Car Parked : Location == >XS  	2015-12-31 11:42:26
+XS BLOCK HAS CAR  2222  	2015-12-31 11:42:30
+Car Parked : Location == >XS  	2015-12-31 11:42:30
+XS BLOCK CANNOT PARK  3333  	2015-12-31 11:42:33
+S BLOCK HAS CAR  3333  	2015-12-31 11:42:33
+Car Parked : Location == >S  	2015-12-31 11:42:33
+Container Size Updated  	2015-12-31 11:42:40
+XS BLOCK HAS CAR  4444  	2015-12-31 11:42:46
+Car Parked : Location == >XS  	2015-12-31 11:42:46
+S BLOCK HAS CAR  5555  	2015-12-31 11:43:13
+Car Parked : Location == >S  	2015-12-31 11:43:13
+Car Parked : Location == >S  	2015-12-31 11:43:25
