@@ -45,7 +45,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         labelVehicleNumber = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        textVehiclePlate = new javax.swing.JTextField();
         labelVehicleType = new javax.swing.JLabel();
         type_select = new javax.swing.JComboBox();
         buttonParkbtn = new javax.swing.JButton();
@@ -105,7 +105,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelVehicleNumber)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1))
+                                .addComponent(textVehiclePlate))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelVehicleType)
                                 .addGap(18, 18, 18)
@@ -122,7 +122,7 @@ public class EntryModule extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelVehicleNumber)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textVehiclePlate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelVehicleType)
@@ -144,20 +144,23 @@ public class EntryModule extends javax.swing.JInternalFrame {
 
     private void buttonParkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonParkbtnActionPerformed
 
+        if(String.valueOf(textVehiclePlate.getText().toString().trim()).length()>=4)
+        { 
+        
         Object item = type_select.getSelectedItem();
         String value = ((ComboItem) item).getValue();
         //JOptionPane.showMessageDialog(null, value);
 
-        int status = mRef.queryNumber(String.valueOf(jTextField1.getText().toString().trim()));
+        int status = mRef.queryNumber(String.valueOf(textVehiclePlate.getText().toString().trim()));
         if (status == 0) {
             JOptionPane.showMessageDialog(null, "Car Already Parked");
-            jTextField1.setText("");
-            jTextField1.requestFocus();
+            textVehiclePlate.setText("");
+            textVehiclePlate.requestFocus();
         } else {
             //   JOptionPane.showMessageDialog(null, "Continue to Park");
-            mRef.queryAvailableSpace(Integer.valueOf(value), String.valueOf(jTextField1.getText().toString().trim()));
-            jTextField1.setText("");
-            jTextField1.requestFocus();
+            mRef.queryAvailableSpace(Integer.valueOf(value), String.valueOf(textVehiclePlate.getText().toString().trim()));
+            textVehiclePlate.setText("");
+            textVehiclePlate.requestFocus();
 
             /*
             API Details 
@@ -167,6 +170,11 @@ public class EntryModule extends javax.swing.JInternalFrame {
             freeCarBlock : remove the entry and mark block free again
             */
             
+        }
+        }
+        else
+        {
+              JOptionPane.showMessageDialog(null, "Invalid Car Plate Number [REQUIRED 4 ]");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonParkbtnActionPerformed
@@ -183,9 +191,9 @@ public class EntryModule extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea console;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelVehicleNumber;
     private javax.swing.JLabel labelVehicleType;
+    private javax.swing.JTextField textVehiclePlate;
     private javax.swing.JComboBox type_select;
     // End of variables declaration//GEN-END:variables
 }

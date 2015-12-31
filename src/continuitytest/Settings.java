@@ -85,7 +85,7 @@ public class Settings extends javax.swing.JInternalFrame {
     private void btnUpdateMaxBlockSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMaxBlockSizeActionPerformed
 
  
-int newSize=Integer.valueOf(mRef.getMaxSize());
+int newSize=Integer.valueOf(textMaxCapacity.getText().toString());
 mRef.setMaxSize(newSize);
 mRef.ConsoleMsg("Container Size Updated");
         // TODO add your handling code here:
